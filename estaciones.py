@@ -20,13 +20,28 @@ meses = {
     12: "Diciembre"
 }
 
+dias_por_mes = {
+    1: 31,
+    2: 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31
+}
+
 while True:
     # Solicitar entrada al usuario y validar el mes
     while True:
-        mes_input = input(COLOR_VERDE+"Ingresa el número del mes (1-12): "+COLOR_RESET)
+        mes_input = input(COLOR_VERDE + "Ingresa el número del mes (1-12): " + COLOR_RESET)
         if not mes_input.isdigit():
             print(COLOR_ROJO + "Por favor, ingresa un valor numérico para el mes." + COLOR_RESET)
-            continue #Vuelve a la condición del ciclo.
+            continue
 
         mes = int(mes_input)
         if mes < 1 or mes > 12:
@@ -35,14 +50,14 @@ while True:
             break
 
     while True:
-        dia_input = input(COLOR_VERDE+"Ingresa el día del mes (1-31): "+COLOR_RESET)
+        dia_input = input(COLOR_VERDE + f"Ingresa el día del mes (1-{dias_por_mes[mes]}): " + COLOR_RESET)
         if not dia_input.isdigit():
             print(COLOR_ROJO + "Por favor, ingresa un valor numérico para el día." + COLOR_RESET)
-            continue #Vuelve a la condición del ciclo.
+            continue
 
         dia = int(dia_input)
-        if dia < 1 or dia > 31:
-            print(COLOR_ROJO + "Día inválido. Inténtalo nuevamente." + COLOR_RESET)
+        if dia < 1 or dia > dias_por_mes[mes]:
+            print(COLOR_ROJO + f"Día inválido. Ingresa un día entre 1 y {dias_por_mes[mes]}." + COLOR_RESET)
         else:
             break
 
@@ -54,11 +69,11 @@ while True:
         estacion = "Verano"
         color_estacion = COLOR_AMARILLO
     elif (mes == 6 and dia >= 11) or (mes == 7 or mes == 8) or (mes == 9 and dia <= 25):
-            estacion = "Otoño"
-            color_estacion = COLOR_AMARILLO
+        estacion = "Otoño"
+        color_estacion = COLOR_AMARILLO
     elif (mes == 9 and dia >= 26) or (mes == 10 or mes == 11 or mes == 12):
-            estacion = "Primavera"
-            color_estacion = COLOR_VERDE
+        estacion = "Primavera"
+        color_estacion = COLOR_VERDE
 
     print(
         f"En el mes de {meses[mes]}, en el día {dia}, estamos en la estación de: {color_estacion+estacion+COLOR_RESET}")
